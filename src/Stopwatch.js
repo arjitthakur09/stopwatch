@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Stopwatch = () => {
   const [seconds, setSeconds] = useState(0);
@@ -18,13 +18,13 @@ const Stopwatch = () => {
   }, [isRunning]);
 
   const formatTime = (totalSeconds) => {
-    const hours = Math.floor(totalSeconds / 3600);
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const mins = Math.floor(totalSeconds / 60);
     const secs = totalSeconds % 60;
+    return `Time: ${mins}:${secs < 10 ? "0" + secs : secs}`;
+  };
 
-    return `${hours.toString().padStart(2, "0")}:${minutes
-      .toString()
-      .padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+  const handleStartStop = () => {
+    setIsRunning((prev) => !prev);
   };
 
   const handleReset = () => {
@@ -33,42 +33,16 @@ const Stopwatch = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>Stopwatch</h1>
-      <div style={styles.timeDisplay}>Time: {formatTime(seconds)}</div>
+      <h2 data-testid="time">{formatTime(seconds)}</h2>
 
-      <div style={styles.buttonSection}>
-        <button onClick={() => setIsRunning(!isRunning)} style={styles.button}>
-          {isRunning ? "Stop" : "Start"}
-        </button>
-        <button onClick={handleReset} style={styles.button}>
-          Reset
-        </button>
-      </div>
+      <button onClick={handleStartStop}>
+        {isRunning ? "Stop" : "Start"}
+      </button>
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    fontFamily: "Arial",
-    textAlign: "center",
-    marginTop: "100px",
-  },
-  timeDisplay: {
-    fontSize: "40px",
-    fontWeight: "bold",
-    marginBottom: "20px",
-  },
-  buttonSection: {
-    marginTop: "20px",
-  },
-  button: {
-    padding: "10px 20px",
-    fontSize: "16px",
-    margin: "0 10px",
-    cursor: "pointer",
-  },
 };
 
 export default Stopwatch;
