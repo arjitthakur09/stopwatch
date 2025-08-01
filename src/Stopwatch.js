@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from "react";
 
 const Stopwatch = () => {
   const [seconds, setSeconds] = useState(0);
@@ -39,9 +39,11 @@ const Stopwatch = () => {
 
       <div style={styles.buttonSection}>
         <button onClick={() => setIsRunning(!isRunning)} style={styles.button}>
-          {isRunning ? 'Stop' : 'Start'}
+          {isRunning ? "Stop" : "Start"}
         </button>
-        <button onClick={handleReset} style={styles.button}>Reset</button>
+        <button onClick={handleReset} style={styles.button}>
+          Reset
+        </button>
       </div>
     </div>
   );
@@ -49,24 +51,24 @@ const Stopwatch = () => {
 
 const styles = {
   container: {
-    fontFamily: 'Arial',
-    textAlign: 'center',
-    marginTop: '100px',
+    fontFamily: "Arial",
+    textAlign: "center",
+    marginTop: "100px",
   },
   timeDisplay: {
-    fontSize: '40px',
-    fontWeight: 'bold',
-    marginBottom: '20px',
+    fontSize: "40px",
+    fontWeight: "bold",
+    marginBottom: "20px",
   },
   buttonSection: {
-    marginTop: '20px',
+    marginTop: "20px",
   },
   button: {
-    padding: '10px 20px',
-    fontSize: '16px',
-    margin: '0 10px',
-    cursor: 'pointer',
-  }
+    padding: "10px 20px",
+    fontSize: "16px",
+    margin: "0 10px",
+    cursor: "pointer",
+  },
 };
 
 export default Stopwatch;
